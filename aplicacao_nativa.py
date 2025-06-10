@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 import requests
 from typing import Any
 
-API_URL = "https://gaia.tail9f339.ts.net"  # Altere para o endpoint real da sua API
+API_URL = "https://processo.stj.jus.br/processo/push/?aplicacao=push.lista&acao=listainicio"  # Altere para o endpoint real da sua API
 
 def buscar_precatorio():
     cpf = cpf_entry.get()
