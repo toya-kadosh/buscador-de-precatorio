@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de Produto</title>
+    <title>Buscador de Precatório</title>
 </head>
 <body>
-    <h1>Produto de Exemplo</h1>
-    <p>Descrição do produto: Este é um exemplo de produto.</p>
-    <p>Preço: R$ 100,00</p>
-    <img src="imagem_exemplo.jpg" alt="Imagem do Produto">
+    <h1>Buscador de Precatório</h1>
+    <input id="cpf" placeholder="Digite o CPF" maxlength="14">
+    <button onclick="buscar()">Buscar</button>
+    <pre id="resultado"></pre>
+    <script>
+        async function buscar() {
+            const cpf = document.getElementById('cpf').value.trim();
+            if (!cpf) {
+                alert("Digite um CPF.");
+                return;
+            }
+            document.getElementById('resultado').textContent = 'Buscando...';
+            try {
+                const res = await fetch(`http://localhost:5000/buscar_precatorio?cpf=${cpf}`);
+                const data = await res.json();
+                document.getElementById('resultado').textContent = JSON.stringify(data, null, 2);
+            } catch (e) {
+                document.getElementById('resultado').textContent = 'Erro ao buscar precatório.';
+            }
+        }
+    </script>
 </body>
 </html>
